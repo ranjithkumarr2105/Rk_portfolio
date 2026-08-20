@@ -34,7 +34,7 @@ const Hero = () => {
           >
             <h1 className="text-[72px] md:text-[88px] lg:text-[100px] font-[900] leading-[1.05] tracking-tighter text-slate-900 flex flex-col">
               <span className="block">Hi, I'm</span>
-              <span className="block">Ranjithkumar</span>
+              <span className="block">Ranjithkumar R</span>
             </h1>
           </motion.div>
 
