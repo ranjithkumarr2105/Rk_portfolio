@@ -26,51 +26,51 @@ const HowIBuildSoftware = () => {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="workflow" className="py-32 w-full relative z-10 overflow-hidden" ref={containerRef}>
+    <section id="workflow" className="py-[140px] w-full relative z-10 overflow-hidden bg-white/50" ref={containerRef}>
       {/* Distinct Section Aurora */}
-      <div className="absolute inset-0 aurora-workflow opacity-40 mix-blend-screen pointer-events-none" />
+      <div className="absolute inset-0 aurora-workflow opacity-100 pointer-events-none" />
       
-      <div className="container mx-auto px-6 max-w-4xl relative z-10">
+      <div className="container mx-auto px-6 max-w-5xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-24"
+          className="text-center mb-[140px]"
         >
-          <h2 className="text-sm font-bold tracking-widest uppercase text-accent3 mb-4">Engineering Workflow</h2>
-          <h3 className="text-4xl md:text-5xl font-bold leading-tight">
+          <h2 className="text-sm font-bold tracking-widest uppercase text-accent1 mb-6">Engineering Workflow</h2>
+          <h3 className="text-5xl md:text-6xl lg:text-[72px] font-black leading-tight text-gray-900">
             How I Build <span className="text-gradient">Software.</span>
           </h3>
         </motion.div>
 
         <div className="relative">
           {/* Static background line */}
-          <div className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[2px] bg-white/5" />
+          <div className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[2px] bg-gray-200" />
           
           {/* Animated fill line */}
           <motion.div 
             style={{ height: lineHeight }}
-            className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 w-[2px] bg-gradient-to-b from-primary via-secondary to-accent3 origin-top"
+            className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 w-[2px] bg-gradient-to-b from-primary via-accent1 to-accent3 origin-top"
           />
 
-          <div className="flex flex-col gap-16 relative z-10">
+          <div className="flex flex-col gap-20 relative z-10">
             {workflow.map((item, idx) => {
               const isEven = idx % 2 === 0;
               return (
-                <div key={idx} className={`flex flex-col md:flex-row items-center gap-8 md:gap-0 ${isEven ? 'md:flex-row-reverse' : ''}`}>
+                <div key={idx} className={`flex flex-col md:flex-row items-center gap-10 md:gap-0 ${isEven ? 'md:flex-row-reverse' : ''}`}>
                   
                   {/* Empty space for alternating layout on Desktop */}
                   <div className="hidden md:block w-1/2" />
 
                   {/* Icon Node */}
-                  <div className="absolute left-[30px] md:left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-background border-2 border-white/10 flex items-center justify-center text-gray-400 z-20 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                  <div className="absolute left-[30px] md:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-white border-4 border-gray-100 flex items-center justify-center text-gray-400 z-20 shadow-md">
                     <motion.div 
                       initial={{ scale: 0 }}
-                      whileInView={{ scale: 1, backgroundColor: "rgba(255,255,255,1)", color: "#000" }}
+                      whileInView={{ scale: 1, backgroundColor: "#3B82F6", color: "#FFF" }}
                       viewport={{ once: true, margin: "-20%" }}
                       transition={{ type: "spring", stiffness: 200, damping: 10, delay: 0.1 }}
-                      className="w-full h-full rounded-full flex items-center justify-center bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)]"
+                      className="w-full h-full rounded-full flex items-center justify-center bg-gray-100 text-gray-500 shadow-inner"
                     >
                       {icons[idx]}
                     </motion.div>
@@ -82,11 +82,11 @@ const HowIBuildSoftware = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-20%" }}
                     transition={{ duration: 0.6, type: "spring" }}
-                    className={`w-full md:w-1/2 pl-24 md:pl-0 ${isEven ? 'md:pl-16' : 'md:pr-16 text-left md:text-right'}`}
+                    className={`w-full md:w-1/2 pl-24 md:pl-0 ${isEven ? 'md:pl-20' : 'md:pr-20 text-left md:text-right'}`}
                   >
-                    <div className="glass-card p-8 hover-glow transition-all duration-300">
-                      <h4 className="text-xl font-bold text-white mb-2">{item.step}</h4>
-                      <p className="text-gray-400 leading-relaxed text-sm">
+                    <div className="glass-card p-10 hover-glow">
+                      <h4 className="text-2xl font-bold text-gray-900 mb-4">{item.step}</h4>
+                      <p className="text-gray-600 leading-relaxed font-light">
                         {item.desc}
                       </p>
                     </div>
