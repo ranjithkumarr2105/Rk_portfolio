@@ -32,9 +32,9 @@ const Hero = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6"
           >
-            <h1 className="text-[72px] md:text-[88px] lg:text-[100px] font-[900] leading-[1.05] tracking-tighter text-slate-900 flex flex-col">
+            <h1 className="text-[64px] md:text-[80px] lg:text-[90px] font-[900] leading-[1.05] tracking-tighter text-slate-900 flex flex-col">
               <span className="block">Hi, I'm</span>
-              <span className="block">Ranjithkumar R</span>
+              <span className="block whitespace-nowrap">Ranjithkumar R</span>
             </h1>
           </motion.div>
 
