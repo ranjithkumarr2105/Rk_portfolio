@@ -1,138 +1,140 @@
 export const portfolioData = {
   personal: {
     name: "Ranjithkumar R",
-    role: "Full Stack Android Developer",
-    roles: [
-      "Android Developer",
-      "Full Stack Developer",
-      "Backend Engineer",
-      "Freelancer"
-    ],
-    tagline: "Building scalable Android applications, backend systems, AI-powered solutions, and production-ready software.",
+    role: "Software Engineer",
+    tagline: "Building intelligent Android applications, robust backend systems, and AI-powered digital experiences that solve real-world problems.",
     email: "ranjithkumarr2105@gmail.com",
-    phone: "+91 63839 79998",
     location: "Kanchipuram, Tamil Nadu",
     linkedin: "https://linkedin.com/in/rk2105",
     github: "https://github.com/ranjithkumarr2105",
-    portfolio: "https://ranjithkumarr2105.github.io"
+    availability: [
+      "Open to Full-Time Roles",
+      "Open to Internships",
+      "Open to Freelance Projects",
+      "Open to Startup Collaborations"
+    ]
   },
+  
   about: {
-    summary: "Results-driven Full-Stack Android Developer and Oracle SQL Certified Specialist. Experienced in building scalable mobile applications and robust backend architectures using Agile methodologies. Passionate about writing clean code, solving complex technical challenges, and delivering high-performance software solutions.",
-    education: {
-      institution: "Saveetha School of Engineering (SIMATS)",
-      degree: "B.E. Computer Science and Engineering",
-      cgpa: "8.11/10",
-      location: "Chennai, TN",
-      period: "2022 – 2026"
+    narrative: `I am a Software Engineer who believes that writing code is just one part of the equation—building scalable, production-ready systems is the real challenge. 
+
+My journey into software engineering started with a simple curiosity about how mobile applications are built, which quickly evolved into a deep passion for the entire stack. I love Android development because of the immediate, tangible impact it has on users, but I am equally fascinated by the unseen architecture: designing normalized databases, building robust Flask APIs, and integrating edge-deployed AI models. 
+
+When I approach a problem, I don't just look for a quick fix. I analyze the business value, consider edge cases, and focus on clean architecture. Whether it's reducing wait times in a campus cafeteria or building an offline crop disease detection model for remote farmers, I aim to create software that is intuitive, performant, and deeply valuable to its users.`,
+    stats: {
+      projects: "5+ Projects",
+      experience: "Android + Web",
+      education: "B.E. CSE (CGPA: 8.11)"
     }
   },
-  skills: {
-    programming: ["Java", "Kotlin", "Python", "JavaScript", "SQL"],
-    android: ["Android Studio", "Jetpack Compose", "XML"],
-    backend: ["Flask", "Firebase", "REST APIs", "PHP", "MySQL"],
-    frontend: ["React"],
-    tools: ["Git", "GitHub", "Postman", "Power BI", "Tableau"]
-  },
-  experience: [
+
+  whyWorkWithMe: [
     {
-      role: "Intern Data Analytics",
-      company: "CodeFluxz",
-      location: "Remote",
-      period: "July 2025 – Sep 2025",
-      points: [
-        "Extracted and analyzed business data using Excel and SQL to identify market trends.",
-        "Built interactive dashboards in Power BI and Tableau to visualize complex data.",
-        "Analyzed KPIs like monthly revenue to optimize digital engagement and acquisition."
-      ]
+      title: "Production-Focused",
+      description: "I don't just write scripts; I build robust architectures designed to handle real users, edge cases, and scale."
     },
     {
-      role: "Independent Client Projects (Freelance)",
-      company: "Self-Employed",
-      location: "Remote",
-      period: "2025 – Present",
-      points: [
-        "Health Tracker: Engineered a mobile app for real-time daily calorie computation.",
-        "AI Agriculture App: Built an offline crop diagnostic Android tool using edge-deployed models.",
-        "Food Delivery App: Developed an ordering platform with a normalized SQL schema and Flask APIs.",
-        "Smart Agriculture & Food Rescue Platform: Built a full-stack platform (Kotlin, Flask, Firebase, React, Gemini AI) for real-time order management, payments, AI crop diagnosis, and live tracking."
-      ]
+      title: "Clean Architecture",
+      description: "Strong believer in separation of concerns, DRY principles, and maintaining readable, scalable codebases."
+    },
+    {
+      title: "Mobile + Backend",
+      description: "From pixel-perfect Jetpack Compose UIs to normalized MySQL schemas and fast Flask APIs."
+    },
+    {
+      title: "AI Integration",
+      description: "Experience bridging the gap between cutting-edge LLMs (Gemini) or Edge AI (TFLite) and practical user applications."
+    },
+    {
+      title: "Performance Optimization",
+      description: "Obsessed with optimizing network calls, reducing layout overdraws, and writing efficient database queries."
+    },
+    {
+      title: "Problem Solving",
+      description: "I enjoy dissecting complex business requirements and translating them into elegant technical solutions."
     }
   ],
-  projects: [
+
+  workflow: [
+    { step: "Discover", desc: "Understanding the core problem, user needs, and business goals." },
+    { step: "Plan", desc: "Architecting the database, API contracts, and system design." },
+    { step: "Design", desc: "Crafting intuitive, premium UI/UX flows." },
+    { step: "Develop", desc: "Writing clean, modular, and testable code." },
+    { step: "Test", desc: "Ensuring stability across devices, network conditions, and edge cases." },
+    { step: "Deploy", desc: "Setting up CI/CD pipelines and launching to production." },
+    { step: "Maintain", desc: "Monitoring analytics, fixing bugs, and iterating on feedback." }
+  ],
+
+  featuredProject: {
+    title: "Stall Spot",
+    subtitle: "Campus Food Ordering System",
+    problem: "Campus cafeterias suffer from massive congestion during peak hours, leading to wasted time for students and inefficient order management for stall owners.",
+    solution: "A full-stack Android platform enabling pre-parcel ordering, real-time status tracking, and automated dynamic rent calculation based on stall revenue.",
+    architecture: "Native Android (Java/XML) client interfacing with a custom PHP backend and normalized MySQL database. Implemented role-based access for Users, Stall Owners, and Admins.",
+    techStack: ["Java", "Android SDK", "PHP", "MySQL", "REST APIs"],
+    features: [
+      "Pre-parcel Ordering",
+      "Dynamic Rent Calculation",
+      "Role-Based Dashboards",
+      "Real-time Order Tracking",
+      "Analytics & Reporting"
+    ],
+    impact: "Reduced cafeteria wait times by 40% and streamlined revenue tracking for campus administration.",
+    challenges: "Managing real-time state synchronization between the stall owner's dashboard and the student's app over fluctuating campus networks.",
+    github: "https://github.com/ranjithkumarr2105/Stall_Spot",
+    screenshots: {
+      landing: "/images/stall-spot/home.jpg",
+      customer: "/images/stall-spot/user_menu.jpg",
+      ownerMenu: "/images/stall-spot/owner_menu.jpg",
+      ownerOrder: "/images/stall-spot/owner_order.jpg",
+      admin: "/images/stall-spot/admin_home.jpg"
+    }
+  },
+
+  freelanceProjects: [
     {
-      title: "Smart Agriculture & Food Rescue Platform",
-      category: "Full Stack AI Application",
-      description: "A comprehensive platform for real-time order management, payments, AI crop diagnosis, and live tracking.",
+      title: "Smart Agriculture & Food Rescue",
+      type: "Full Stack AI Platform",
+      problem: "Farmers lack real-time crop diagnostics, and excess food in the supply chain often goes to waste due to inefficient logistics.",
+      solution: "A comprehensive ecosystem connecting farmers, logistics, and buyers with integrated AI diagnostics and a donation pipeline.",
+      architecture: "Kotlin Android app powered by a Flask backend and Firebase real-time database, utilizing Gemini AI for crop analysis and Google Maps for live tracking.",
       techStack: ["Kotlin", "Jetpack Compose", "Flask", "Firebase", "React", "Gemini AI", "Google Maps"],
-      features: ["Live Tracking", "Wallet Integration", "OTP Verification", "Role-based Dashboards", "AI Crop Doctor", "Real-time Chat", "Donation Management", "Logistics"],
-      image: "https://images.unsplash.com/photo-1592982537447-6f2a6a0c5c13?q=80&w=800&auto=format&fit=crop",
-      github: "https://github.com/ranjithkumarr2105",
-      demo: "#"
+      features: ["Live Tracking", "AI Crop Doctor", "Wallet Integration", "OTP Verification", "Donation Management"],
+      impact: "Created a seamless end-to-end flow for real-time order management, secure payments, and waste reduction.",
+      image: "/src/assets/generated/smart_ag_hero.png" // Will be mapped correctly in component
     },
     {
-      title: "Stall Spot - Campus Food Ordering System",
-      category: "Full Stack Android App",
-      description: "Developed a full-stack Android application using Java and PHP within an Agile framework. Engineered a dynamic rent calculation module based on stall revenue.",
-      techStack: ["Java", "XML", "PHP", "MySQL", "Android"],
-      features: ["Pre-parcel Ordering", "Dynamic Rent Calculation", "Reduced Wait Times by 40%"],
-      image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop",
-      github: "https://github.com/ranjithkumarr2105",
-      demo: "#"
+      title: "Health & Wellness Tracker",
+      type: "Mobile Application",
+      problem: "Users struggle to accurately compute and log daily caloric intake without cumbersome interfaces.",
+      solution: "Engineered a streamlined mobile app prioritizing speed of entry and real-time caloric computation.",
+      architecture: "Native Android application leveraging Firebase for real-time data synchronization and user profile management.",
+      techStack: ["Android", "Java", "Firebase", "Material Design"],
+      features: ["Real-time Computation", "Calorie Tracking", "Custom User Profiles", "Progress Analytics"],
+      impact: "Delivered a frictionless daily tracking experience for active users.",
+      image: "/src/assets/generated/health_tracker_hero.png"
     },
     {
-      title: "Health Tracker",
-      category: "Mobile Application",
-      description: "Engineered a mobile app for real-time daily calorie computation.",
-      techStack: ["Android", "Java", "Firebase"],
-      features: ["Calorie Tracking", "Real-time Computation", "User Profiles"],
-      image: "https://images.unsplash.com/photo-1494390248081-4e521a5940db?q=80&w=800&auto=format&fit=crop",
-      github: "https://github.com/ranjithkumarr2105",
-      demo: "#"
-    },
-    {
-      title: "AI Agriculture App",
-      category: "Edge AI Android Tool",
-      description: "Built an offline crop diagnostic Android tool using edge-deployed models.",
-      techStack: ["Android", "Kotlin", "TensorFlow Lite"],
-      features: ["Offline Diagnosis", "Edge Inference", "Crop Disease Detection"],
-      image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=800&auto=format&fit=crop",
-      github: "https://github.com/ranjithkumarr2105",
-      demo: "#"
-    },
-    {
-      title: "Food Delivery App",
-      category: "Backend Platform",
-      description: "Developed an ordering platform with a normalized SQL schema and Flask APIs.",
+      title: "Commission-Free Food Delivery",
+      type: "Backend Platform",
+      problem: "Local restaurants lose significant margins to high-commission delivery aggregators.",
+      solution: "Developed an ordering platform with a highly optimized, normalized SQL schema allowing restaurants to bypass aggregators.",
+      architecture: "Robust Flask REST APIs serving an Android client, backed by a deeply normalized MySQL database to ensure data integrity.",
       techStack: ["Flask", "MySQL", "Python", "REST APIs"],
-      features: ["Normalized Schema", "Order Management", "RESTful Architecture"],
-      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop",
-      github: "https://github.com/ranjithkumarr2105",
-      demo: "#"
-    }
-  ],
-  certifications: [
-    {
-      name: "Oracle Database SQL Certified Specialist",
-      details: "Verified skills in Complex SQL, Subqueries, and DDL/DML.",
-      issuer: "Oracle"
-    }
-  ],
-  research: [
-    {
-      title: "AI-Driven AR Indoor Navigation Algorithm",
-      event: "Star Summit 2025",
-      category: "Tech Research, Algorithms",
-      points: [
-        "Proved A* algorithm offered the highest stability and accuracy (97.25%) for mobile AR indoor navigation."
-      ]
+      features: ["Normalized Schema", "Order Management", "Restaurant Dashboards", "Delivery Routing"],
+      impact: "Provided a scalable backend foundation capable of handling concurrent orders without aggregator fees.",
+      image: "/src/assets/generated/food_delivery_hero.png"
     },
     {
-      title: "Speech-to-Text Accuracy Research",
-      event: "Star Summit 2024",
-      category: "AI Architecture, Deep Learning",
-      points: [
-        "Authored a paper demonstrating DNNs' superior accuracy (98.33%) over CNNs (86.54%) via statistical testing."
-      ]
+      title: "Offline Crop Disease Detection",
+      type: "Edge AI Tool",
+      problem: "Farmers in remote areas lack internet connectivity to access cloud-based crop diagnostic tools.",
+      solution: "Built a standalone Android tool that runs deep learning inference directly on the device.",
+      architecture: "Integrated TensorFlow Lite models into a Kotlin Android app for instant, on-device edge inference without network calls.",
+      techStack: ["Android", "Kotlin", "TensorFlow Lite", "Edge AI"],
+      features: ["Offline Diagnosis", "Edge Inference", "Real-time Camera Feed", "Disease Treatment DB"],
+      impact: "Empowered remote farmers with instant, zero-latency crop diagnostics regardless of connectivity.",
+      image: "/src/assets/generated/crop_disease_hero.png"
     }
   ]
 };

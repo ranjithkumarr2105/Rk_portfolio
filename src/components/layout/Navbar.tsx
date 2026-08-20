@@ -17,34 +17,35 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Why Me', href: '#why-me' },
+    { name: 'Workflow', href: '#workflow' },
+    { name: 'Featured', href: '#featured' },
+    { name: 'Projects', href: '#freelance' },
   ];
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-3' : 'bg-transparent py-5'
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'py-3' : 'py-6'
       }`}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="text-2xl font-bold tracking-tighter text-gradient">
-          RK.
+      <div className={`absolute inset-0 transition-opacity duration-500 ${isScrolled ? 'glass opacity-100' : 'opacity-0'}`} />
+      
+      <div className="container mx-auto px-6 flex items-center justify-between relative z-10">
+        <a href="#" className="text-2xl font-black tracking-tighter text-white group flex items-center gap-1">
+          RK<span className="text-primary group-hover:text-secondary transition-colors">.</span>
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8 bg-white/[0.03] px-6 py-2 rounded-full border border-white/5 backdrop-blur-md">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              className="text-sm font-medium text-gray-400 hover:text-white transition-colors tracking-wide"
             >
               {link.name}
             </a>
@@ -52,24 +53,26 @@ const Navbar = () => {
         </nav>
 
         {/* Social / CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          <a href={portfolioData.personal.github} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-            <FaGithub size={20} />
-          </a>
-          <a href={portfolioData.personal.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-            <FaLinkedin size={20} />
-          </a>
+        <div className="hidden md:flex items-center gap-6">
+          <div className="flex gap-4">
+            <a href={portfolioData.personal.github} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <FaGithub size={18} />
+            </a>
+            <a href={portfolioData.personal.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <FaLinkedin size={18} />
+            </a>
+          </div>
           <a
             href="#contact"
-            className="px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all duration-300 text-sm font-semibold"
+            className="px-5 py-2 rounded-full bg-white text-black font-semibold hover:scale-105 transition-transform duration-300 text-sm"
           >
-            Hire Me
+            Collaborate
           </a>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-gray-300 hover:text-white"
+          className="md:hidden text-gray-300 hover:text-white p-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -79,28 +82,35 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className="md:hidden glass border-t border-white/5 mt-3"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="md:hidden glass border-t border-white/5 mt-3 absolute w-full"
         >
-          <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+          <div className="container mx-auto px-6 py-6 flex flex-col gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-gray-300 hover:text-white"
+                className="text-lg font-medium text-gray-300 hover:text-white"
               >
                 {link.name}
               </a>
             ))}
-            <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-lg font-bold text-primary"
+            >
+              Let's Collaborate
+            </a>
+            <div className="flex items-center gap-6 pt-6 border-t border-white/10">
               <a href={portfolioData.personal.github} target="_blank" rel="noreferrer">
-                <FaGithub size={20} className="text-gray-400 hover:text-white" />
+                <FaGithub size={24} className="text-gray-400 hover:text-white" />
               </a>
               <a href={portfolioData.personal.linkedin} target="_blank" rel="noreferrer">
-                <FaLinkedin size={20} className="text-gray-400 hover:text-white" />
+                <FaLinkedin size={24} className="text-gray-400 hover:text-white" />
               </a>
             </div>
           </div>

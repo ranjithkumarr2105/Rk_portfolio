@@ -1,97 +1,97 @@
-
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Download } from 'lucide-react';
+import { Mail, MapPin, ArrowUpRight } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { portfolioData } from '../../data/portfolioData';
 
 const Contact = () => {
-  const { email, github, linkedin, location } = portfolioData.personal;
+  const { email, github, linkedin, location, availability } = portfolioData.personal;
 
   return (
-    <section id="contact" className="py-24 w-full relative z-10">
-      <div className="container mx-auto px-6 max-w-4xl">
+    <section id="contact" className="py-32 w-full relative z-10 overflow-hidden">
+      
+      {/* Massive subtle background text */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-black text-white/[0.02] whitespace-nowrap pointer-events-none select-none">
+        COLLABORATE
+      </div>
+
+      <div className="container mx-auto px-6 max-w-5xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-24"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Get In <span className="text-gradient">Touch</span></h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          <p className="mt-6 text-gray-400 max-w-xl mx-auto text-lg">
-            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          <h2 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight">
+            Let's Build Something <br className="hidden md:block" />
+            <span className="text-gradient">Amazing Together.</span>
+          </h2>
+          <p className="text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto font-light">
+            I am currently exploring new opportunities and open to collaborating on ambitious products. Expect a response within 24 hours.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-stretch">
+        <div className="flex flex-col lg:flex-row gap-12 items-stretch">
+          
+          {/* Availability Side */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="glass-card p-8 flex flex-col justify-center"
+            transition={{ duration: 0.8 }}
+            className="w-full lg:w-1/2 glass-card p-12 flex flex-col justify-center"
           >
-            <h3 className="text-2xl font-bold text-white mb-8">Contact Information</h3>
-            
-            <div className="flex flex-col gap-6">
-              <a href={`mailto:${email}`} className="flex items-center gap-4 text-gray-300 hover:text-primary transition-colors group">
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                  <Mail size={20} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-1">Email</span>
-                  <span className="font-medium text-white">{email}</span>
-                </div>
-              </a>
-
-              <div className="flex items-center gap-4 text-gray-300 group">
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
-                  <MapPin size={20} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-1">Location</span>
-                  <span className="font-medium text-white">{location}</span>
-                </div>
-              </div>
-
-              <div className="flex gap-4 mt-4 pt-6 border-t border-white/10">
-                <a href={github} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
-                  <FaGithub size={20} />
-                </a>
-                <a href={linkedin} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
-                  <FaLinkedin size={20} />
-                </a>
-              </div>
-            </div>
+            <h3 className="text-2xl font-bold text-white mb-8 border-b border-white/10 pb-4">Current Availability</h3>
+            <ul className="flex flex-col gap-6">
+              {availability.map((item, idx) => (
+                <li key={idx} className="flex items-center gap-4 text-lg text-gray-300">
+                  <div className="w-2 h-2 rounded-full bg-accent1 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
+                  <span className="font-medium">{item}</span>
+                </li>
+              ))}
+            </ul>
           </motion.div>
 
+          {/* Contact Direct Side */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="glass-card p-8 flex flex-col items-center justify-center text-center group relative overflow-hidden"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full lg:w-1/2 flex flex-col gap-6"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-                <Download size={32} />
+            <a 
+              href={`mailto:${email}`} 
+              className="glass-card p-10 flex flex-col items-center justify-center text-center group hover-glow transition-all duration-300 h-full relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+                  <Mail size={32} />
+                </div>
+                <h4 className="text-xl font-bold text-gray-400 mb-2">Send me an email</h4>
+                <p className="text-2xl md:text-3xl font-bold text-white group-hover:text-primary transition-colors flex items-center gap-2">
+                  {email} <ArrowUpRight size={24} className="opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Resume</h3>
-              <p className="text-gray-400 mb-8 max-w-xs mx-auto">
-                Download my complete resume to see detailed information about my experience and skills.
-              </p>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                className="px-8 py-4 rounded-full bg-primary text-white font-semibold hover:bg-blue-600 transition-colors shadow-lg hover:shadow-primary/50 w-full sm:w-auto flex items-center justify-center gap-2"
-              >
-                Download PDF <Download size={18} />
+            </a>
+            
+            <div className="flex gap-6 h-1/3">
+              <a href={github} target="_blank" rel="noreferrer" className="w-1/2 glass-card p-6 flex flex-col items-center justify-center group hover-glow transition-all">
+                <FaGithub size={28} className="text-gray-400 group-hover:text-white mb-3" />
+                <span className="font-bold text-white">GitHub</span>
+              </a>
+              <a href={linkedin} target="_blank" rel="noreferrer" className="w-1/2 glass-card p-6 flex flex-col items-center justify-center group hover-glow transition-all">
+                <FaLinkedin size={28} className="text-gray-400 group-hover:text-white mb-3" />
+                <span className="font-bold text-white">LinkedIn</span>
               </a>
             </div>
           </motion.div>
+
+        </div>
+        
+        <div className="mt-12 text-center flex items-center justify-center gap-2 text-gray-500 font-medium">
+          <MapPin size={18} /> Based in {location}
         </div>
       </div>
     </section>
