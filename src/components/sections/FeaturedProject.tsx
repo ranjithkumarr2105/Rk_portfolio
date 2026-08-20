@@ -1,39 +1,43 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { useRef, useState } from 'react';
 import { portfolioData } from '../../data/portfolioData';
 import { FaGithub } from 'react-icons/fa';
-import { Layers, Zap, Shield, Database, Smartphone } from 'lucide-react';
+import { Layers, Database, Smartphone } from 'lucide-react';
 
 const FeaturedProject = () => {
   const { featuredProject: project } = portfolioData;
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start start", "end end"]
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+  // Calculate the active index based on scroll progress
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    // We have 5 screenshots. latest goes from 0 to 1.
+    // 0 to 0.2 = index 0
+    // 0.2 to 0.4 = index 1
+    // ...
+    const index = Math.min(Math.floor(latest * project.screenshots.length), project.screenshots.length - 1);
+    setActiveIndex(index);
+  });
 
   return (
-    <section id="featured" ref={containerRef} className="py-32 w-full relative z-10 bg-black">
+    <section id="featured" className="w-full relative z-10 bg-background overflow-hidden border-y border-white/5 pt-32">
       
-      {/* Cinematic Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-1/2 h-[500px] bg-primary/10 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-0 w-1/2 h-[500px] bg-secondary/10 rounded-full blur-[150px]" />
-      </div>
+      {/* Distinct Section Aurora */}
+      <div className="absolute inset-0 aurora-featured opacity-40 mix-blend-screen pointer-events-none" />
 
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        
-        {/* Header Area */}
-        <div className="flex flex-col items-center text-center mb-24">
+      {/* Intro text */}
+      <div className="container mx-auto px-6 max-w-7xl relative z-20 mb-32">
+        <div className="flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-white mb-6"
+            className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-accent2 mb-6"
           >
             Featured Product
           </motion.div>
@@ -51,75 +55,100 @@ const FeaturedProject = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-xl md:text-2xl text-gradient font-medium mb-10"
+            className="text-xl md:text-2xl text-gray-400 font-light mb-10 max-w-2xl mx-auto"
           >
             {project.subtitle}
           </motion.p>
-
-          <motion.a
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            href={project.github}
-            target="_blank"
-            rel="noreferrer"
-            className="px-8 py-4 rounded-full bg-white text-black font-bold flex items-center gap-3 hover:scale-105 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)]"
-          >
-            <FaGithub size={20} /> View Source Code
-          </motion.a>
         </div>
+      </div>
 
-        {/* Cinematic Screenshots Showcase */}
-        <div className="flex flex-col md:flex-row gap-8 justify-center items-center mb-32 h-[600px] md:h-[700px] relative">
+      {/* SCROLLING SHOWCASE - The container is tall so we can scroll through it */}
+      <div ref={containerRef} className="h-[400vh] relative">
+        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
           
-          <motion.div style={{ y: y1 }} className="z-20 w-64 md:w-80 rounded-[2.5rem] overflow-hidden border-8 border-gray-900 shadow-[0_0_50px_rgba(59,130,246,0.3)] bg-gray-900">
-            <img src={project.screenshots.landing} alt="Landing Screen" className="w-full h-auto" />
-          </motion.div>
-          
-          <motion.div style={{ y: y2 }} className="z-10 w-56 md:w-72 rounded-[2rem] overflow-hidden border-8 border-gray-900 shadow-2xl bg-gray-900 opacity-60 md:absolute md:left-[10%] xl:left-[15%] hidden md:block">
-            <img src={project.screenshots.customer} alt="Customer View" className="w-full h-auto" />
-          </motion.div>
+          <div className="container mx-auto px-6 max-w-7xl flex flex-col lg:flex-row items-center gap-12 lg:gap-24 h-full py-20">
+            
+            {/* Left Side: Storytelling Text */}
+            <div className="w-full lg:w-1/2 flex flex-col justify-center h-full relative z-20">
+              {project.screenshots.map((shot: any, idx: number) => {
+                const isActive = activeIndex === idx;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={false}
+                    animate={{ 
+                      opacity: isActive ? 1 : 0, 
+                      y: isActive ? 0 : 50,
+                      scale: isActive ? 1 : 0.9,
+                      filter: isActive ? "blur(0px)" : "blur(10px)",
+                      pointerEvents: isActive ? "auto" : "none"
+                    }}
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 flex flex-col justify-center"
+                  >
+                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
+                      {shot.title}
+                    </h3>
+                    <p className="text-xl text-gray-400 leading-relaxed font-light">
+                      {shot.desc}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
 
-          <motion.div style={{ y: y2 }} className="z-30 w-60 md:w-72 rounded-[2rem] overflow-hidden border-8 border-gray-900 shadow-2xl bg-gray-900 opacity-80 md:absolute md:right-[5%] xl:right-[15%] hidden md:block">
-            <img src={project.screenshots.ownerMenu} alt="Owner Menu" className="w-full h-auto" />
-          </motion.div>
+            {/* Right Side: CSS Device Mockup */}
+            <div className="w-full lg:w-1/2 flex justify-center items-center h-full relative z-20">
+              
+              <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="device-mockup w-[280px] h-[580px] md:w-[320px] md:h-[680px] relative border-[12px] border-black rounded-[50px] shadow-[0_0_80px_rgba(245,158,11,0.2)] bg-black"
+              >
+                <div className="device-notch" />
+                <div className="device-glass" />
+                
+                {/* Images inside the mockup */}
+                {project.screenshots.map((shot: any, idx: number) => {
+                  const isActive = activeIndex === idx;
+                  return (
+                    <motion.img
+                      key={idx}
+                      src={shot.image}
+                      alt={shot.title}
+                      initial={false}
+                      animate={{
+                        opacity: isActive ? 1 : 0,
+                        scale: isActive ? 1 : 1.1,
+                      }}
+                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute inset-0 w-full h-full object-cover object-top rounded-[32px]"
+                    />
+                  );
+                })}
+              </motion.div>
+
+            </div>
+          </div>
         </div>
+      </div>
 
-        {/* Deep Dive Details */}
+      {/* Details Area below the scroll section */}
+      <div className="container mx-auto px-6 max-w-7xl relative z-20 pb-32 pt-32">
         <div className="grid lg:grid-cols-2 gap-16 mb-24">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="glass-card p-10 flex flex-col gap-6"
-          >
-            <h3 className="text-sm font-bold tracking-widest uppercase text-accent2 flex items-center gap-2">
-              <Zap size={16} /> The Problem
-            </h3>
+          <div className="glass-card p-10 flex flex-col gap-6">
+            <h3 className="text-sm font-bold tracking-widest uppercase text-accent2">The Problem</h3>
             <p className="text-gray-300 text-lg leading-relaxed font-light">{project.problem}</p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="glass-card p-10 flex flex-col gap-6"
-          >
-            <h3 className="text-sm font-bold tracking-widest uppercase text-accent1 flex items-center gap-2">
-              <Shield size={16} /> The Solution
-            </h3>
+          </div>
+          <div className="glass-card p-10 flex flex-col gap-6">
+            <h3 className="text-sm font-bold tracking-widest uppercase text-accent1">The Solution</h3>
             <p className="text-gray-300 text-lg leading-relaxed font-light">{project.solution}</p>
-          </motion.div>
+          </div>
         </div>
 
         {/* Architecture & Tech */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="glass-card p-10 lg:p-16 relative overflow-hidden"
-        >
-          <div className="absolute right-0 bottom-0 w-96 h-96 bg-gradient-to-tl from-primary/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="glass-card p-10 lg:p-16 relative overflow-hidden">
+          <div className="absolute right-0 bottom-0 w-96 h-96 bg-gradient-to-tl from-accent2/10 to-transparent rounded-full blur-3xl pointer-events-none" />
           
           <div className="grid md:grid-cols-2 gap-16 relative z-10">
             <div>
@@ -133,13 +162,22 @@ const FeaturedProject = () => {
               </h3>
               <p className="text-gray-300 font-medium mb-4">{project.impact}</p>
               <p className="text-gray-500 text-sm leading-relaxed">{project.challenges}</p>
+
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-8 px-6 py-3 rounded-full bg-white/10 text-white font-bold flex items-center justify-center gap-3 hover:bg-white transition-colors hover:text-black w-max"
+              >
+                <FaGithub size={20} /> View Source Code
+              </a>
             </div>
 
             <div>
               <h3 className="text-xl font-bold mb-6 text-white border-b border-white/10 pb-4">Key Features</h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                {project.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3 text-sm text-gray-300 bg-white/5 p-3 rounded-lg border border-white/5">
+                {project.features.map((feature: string, idx: number) => (
+                  <li key={idx} className="flex items-center gap-3 text-sm text-gray-300 bg-white/5 p-3 rounded-xl border border-white/5">
                     <Smartphone size={16} className="text-accent3" />
                     {feature}
                   </li>
@@ -148,7 +186,7 @@ const FeaturedProject = () => {
 
               <h3 className="text-xl font-bold mb-6 text-white border-b border-white/10 pb-4">Tech Stack</h3>
               <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tech, idx) => (
+                {project.techStack.map((tech: string, idx: number) => (
                   <span key={idx} className="px-4 py-2 text-sm font-medium text-white/80 bg-white/10 rounded-full">
                     {tech}
                   </span>
@@ -156,8 +194,7 @@ const FeaturedProject = () => {
               </div>
             </div>
           </div>
-        </motion.div>
-
+        </div>
       </div>
     </section>
   );

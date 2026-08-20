@@ -3,6 +3,14 @@ export const portfolioData = {
     name: "Ranjithkumar R",
     role: "Software Engineer",
     tagline: "Building intelligent Android applications, robust backend systems, and AI-powered digital experiences that solve real-world problems.",
+    roles: [
+      "Android Developer",
+      "Full Stack Developer",
+      "Backend Engineer",
+      "AI Application Developer",
+      "Freelance Software Engineer"
+    ],
+    skills: ["Android", "Backend", "AI", "REST APIs", "Firebase"],
     email: "ranjithkumarr2105@gmail.com",
     location: "Kanchipuram, Tamil Nadu",
     linkedin: "https://linkedin.com/in/rk2105",
@@ -57,12 +65,12 @@ When I approach a problem, I don't just look for a quick fix. I analyze the busi
 
   workflow: [
     { step: "Discover", desc: "Understanding the core problem, user needs, and business goals." },
-    { step: "Plan", desc: "Architecting the database, API contracts, and system design." },
-    { step: "Design", desc: "Crafting intuitive, premium UI/UX flows." },
-    { step: "Develop", desc: "Writing clean, modular, and testable code." },
-    { step: "Test", desc: "Ensuring stability across devices, network conditions, and edge cases." },
-    { step: "Deploy", desc: "Setting up CI/CD pipelines and launching to production." },
-    { step: "Maintain", desc: "Monitoring analytics, fixing bugs, and iterating on feedback." }
+    { step: "Research", desc: "Analyzing competitors, technical constraints, and best practices." },
+    { step: "Architecture", desc: "Designing the database, API contracts, and scalable system flow." },
+    { step: "Development", desc: "Writing clean, modular, and testable code." },
+    { step: "Testing", desc: "Ensuring stability across devices, network conditions, and edge cases." },
+    { step: "Deployment", desc: "Setting up CI/CD pipelines and launching to production." },
+    { step: "Maintenance", desc: "Monitoring analytics, fixing bugs, and iterating on feedback." }
   ],
 
   featuredProject: {
@@ -82,13 +90,13 @@ When I approach a problem, I don't just look for a quick fix. I analyze the busi
     impact: "Reduced cafeteria wait times by 40% and streamlined revenue tracking for campus administration.",
     challenges: "Managing real-time state synchronization between the stall owner's dashboard and the student's app over fluctuating campus networks.",
     github: "https://github.com/ranjithkumarr2105/Stall_Spot",
-    screenshots: {
-      landing: "/images/stall-spot/home.jpg",
-      customer: "/images/stall-spot/user_menu.jpg",
-      ownerMenu: "/images/stall-spot/owner_menu.jpg",
-      ownerOrder: "/images/stall-spot/owner_order.jpg",
-      admin: "/images/stall-spot/admin_home.jpg"
-    }
+    screenshots: [
+      { id: "landing", title: "Customer Experience", desc: "Students can browse stalls, view menus, and place pre-parcel orders to skip the queue.", image: "/images/stall-spot/home.jpg" },
+      { id: "customer", title: "Ordering Experience", desc: "Real-time order tracking and status updates from the vendor.", image: "/images/stall-spot/user_menu.jpg" },
+      { id: "ownerMenu", title: "Vendor Management", desc: "Stall owners can manage their active menu items, availability, and pricing in real-time.", image: "/images/stall-spot/owner_menu.jpg" },
+      { id: "ownerOrder", title: "Order Processing", desc: "Vendors receive live order notifications and update statuses (Preparing, Ready, Collected).", image: "/images/stall-spot/owner_order.jpg" },
+      { id: "admin", title: "System Administration", desc: "Admins monitor total platform revenue and calculate dynamic rent for each stall.", image: "/images/stall-spot/admin_home.jpg" }
+    ]
   },
 
   freelanceProjects: [
@@ -98,10 +106,10 @@ When I approach a problem, I don't just look for a quick fix. I analyze the busi
       problem: "Farmers lack real-time crop diagnostics, and excess food in the supply chain often goes to waste due to inefficient logistics.",
       solution: "A comprehensive ecosystem connecting farmers, logistics, and buyers with integrated AI diagnostics and a donation pipeline.",
       architecture: "Kotlin Android app powered by a Flask backend and Firebase real-time database, utilizing Gemini AI for crop analysis and Google Maps for live tracking.",
-      techStack: ["Kotlin", "Jetpack Compose", "Flask", "Firebase", "React", "Gemini AI", "Google Maps"],
+      techStack: ["Kotlin", "Jetpack Compose", "Flask", "Firebase", "React", "Gemini AI"],
       features: ["Live Tracking", "AI Crop Doctor", "Wallet Integration", "OTP Verification", "Donation Management"],
       impact: "Created a seamless end-to-end flow for real-time order management, secure payments, and waste reduction.",
-      image: "/src/assets/generated/smart_ag_hero.png" // Will be mapped correctly in component
+      image: "/src/assets/generated/smart_ag_hero.png"
     },
     {
       title: "Health & Wellness Tracker",

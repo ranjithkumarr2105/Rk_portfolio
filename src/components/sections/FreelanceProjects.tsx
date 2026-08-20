@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { portfolioData } from '../../data/portfolioData';
 import { Activity, Layers, Target, ShieldCheck } from 'lucide-react';
 
@@ -13,8 +13,11 @@ const FreelanceProjects = () => {
   ];
 
   return (
-    <section id="freelance" className="py-32 w-full relative z-10 bg-black/60 border-t border-white/5">
-      <div className="container mx-auto px-6 max-w-7xl">
+    <section id="freelance" className="py-32 w-full relative z-10 overflow-hidden bg-black/40">
+      {/* Distinct Section Aurora */}
+      <div className="absolute inset-0 aurora-freelance opacity-30 mix-blend-screen pointer-events-none" />
+
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         
         <div className="text-center mb-32">
           <motion.h2 
@@ -23,14 +26,14 @@ const FreelanceProjects = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold mb-6"
           >
-            Client <span className="text-gradient-subtle">Engagements.</span>
+            Client <span className="text-gradient">Engagements.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto"
+            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light"
           >
             Real-world applications delivered for independent clients, prioritizing scalability, robust architectures, and deep business value.
           </motion.p>
@@ -39,6 +42,16 @@ const FreelanceProjects = () => {
         <div className="flex flex-col gap-32">
           {freelanceProjects.map((project, idx) => {
             const isEven = idx % 2 === 0;
+
+            // Tilt effect mechanics
+            const mouseX = useMotionValue(0);
+            const mouseY = useMotionValue(0);
+
+            function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+              const { left, top, width, height } = currentTarget.getBoundingClientRect();
+              mouseX.set(clientX - left - width / 2);
+              mouseY.set(clientY - top - height / 2);
+            }
 
             return (
               <motion.div
@@ -49,16 +62,29 @@ const FreelanceProjects = () => {
                 transition={{ duration: 0.8 }}
                 className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-24 items-center group`}
               >
-                {/* Visual Side */}
-                <div className="w-full lg:w-1/2 relative perspective-1000">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-white/0 rounded-[2rem] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+                {/* 3D Tilt Mockup Side */}
+                <div 
+                  className="w-full lg:w-1/2 relative perspective-1000 h-[400px] flex justify-center items-center"
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={() => {
+                    mouseX.set(0);
+                    mouseY.set(0);
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-[2rem] blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
                   
                   <motion.div 
-                    whileHover={{ rotateY: isEven ? 5 : -5, rotateX: 5 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="relative rounded-[2rem] overflow-hidden glass-card p-2 border-white/10 group-hover:border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.5)] transform-gpu"
+                    style={{
+                      rotateX: useMotionTemplate`${mouseY}deg`,
+                      rotateY: useMotionTemplate`${mouseX}deg`,
+                    }}
+                    animate={{ rotateX: 0, rotateY: 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className="relative w-full max-w-[500px] aspect-[4/3] rounded-[2rem] overflow-hidden glass-card p-2 border-white/20 shadow-[0_30px_60px_rgba(0,0,0,0.8)] transform-gpu"
                   >
-                     <img src={project.image} alt={project.title} className="w-full h-auto rounded-[1.5rem] object-cover" />
+                     <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-[1.5rem]" />
+                     {/* Glass Reflection Overlay */}
+                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-50 mix-blend-overlay pointer-events-none rounded-[1.5rem]" />
                   </motion.div>
                 </div>
 

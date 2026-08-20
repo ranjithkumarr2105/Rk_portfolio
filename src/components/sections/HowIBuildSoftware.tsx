@@ -26,8 +26,11 @@ const HowIBuildSoftware = () => {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="workflow" className="py-32 w-full relative z-10" ref={containerRef}>
-      <div className="container mx-auto px-6 max-w-4xl">
+    <section id="workflow" className="py-32 w-full relative z-10 overflow-hidden" ref={containerRef}>
+      {/* Distinct Section Aurora */}
+      <div className="absolute inset-0 aurora-workflow opacity-40 mix-blend-screen pointer-events-none" />
+      
+      <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

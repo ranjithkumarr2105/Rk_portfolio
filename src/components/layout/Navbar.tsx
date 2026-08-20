@@ -34,49 +34,58 @@ const Navbar = () => {
     >
       <div className={`absolute inset-0 transition-opacity duration-500 ${isScrolled ? 'glass opacity-100' : 'opacity-0'}`} />
       
-      <div className="container mx-auto px-6 flex items-center justify-between relative z-10">
-        <a href="#" className="text-2xl font-black tracking-tighter text-white group flex items-center gap-1">
-          RK<span className="text-primary group-hover:text-secondary transition-colors">.</span>
-        </a>
+      <div className="container mx-auto px-6 relative z-10 flex items-center justify-between">
+        
+        {/* Left: Logo */}
+        <div className="w-1/3 flex justify-start">
+          <a href="#" className="text-2xl font-black tracking-tighter text-white group flex items-center gap-1">
+            RK<span className="text-primary group-hover:text-secondary transition-colors">.</span>
+          </a>
+        </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8 bg-white/[0.03] px-6 py-2 rounded-full border border-white/5 backdrop-blur-md">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-gray-400 hover:text-white transition-colors tracking-wide"
-            >
-              {link.name}
-            </a>
-          ))}
-        </nav>
+        {/* Center: Desktop Nav */}
+        <div className="w-1/3 hidden md:flex justify-center">
+          <nav className="flex items-center gap-8 bg-white/[0.03] px-8 py-3 rounded-full border border-white/5 backdrop-blur-md shadow-lg relative">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium text-gray-400 hover:text-white transition-colors tracking-wide relative group"
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+          </nav>
+        </div>
 
-        {/* Social / CTA */}
-        <div className="hidden md:flex items-center gap-6">
+        {/* Right: Social / CTA */}
+        <div className="w-1/3 hidden md:flex justify-end items-center gap-6">
           <div className="flex gap-4">
             <a href={portfolioData.personal.github} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-              <FaGithub size={18} />
+              <FaGithub size={20} />
             </a>
             <a href={portfolioData.personal.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-              <FaLinkedin size={18} />
+              <FaLinkedin size={20} />
             </a>
           </div>
           <a
             href="#contact"
-            className="px-5 py-2 rounded-full bg-white text-black font-semibold hover:scale-105 transition-transform duration-300 text-sm"
+            className="px-6 py-2.5 rounded-full bg-white text-black font-semibold hover:scale-105 transition-transform duration-300 text-sm shadow-[0_0_20px_rgba(255,255,255,0.3)]"
           >
             Collaborate
           </a>
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-gray-300 hover:text-white p-2"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="w-1/3 flex justify-end md:hidden">
+          <button
+            className="text-gray-300 hover:text-white p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -85,7 +94,7 @@ const Navbar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden glass border-t border-white/5 mt-3 absolute w-full"
+          className="md:hidden glass border-t border-white/5 mt-3 absolute w-full left-0 right-0"
         >
           <div className="container mx-auto px-6 py-6 flex flex-col gap-6">
             {navLinks.map((link) => (

@@ -25,14 +25,9 @@ function App() {
         style={{ scaleX }}
       />
 
-      {/* Persistent Animated Aurora Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-[-50%] mesh-bg opacity-40 mix-blend-screen" />
-      </div>
-
       <Navbar />
       
-      <main className="relative z-10 flex flex-col items-center w-full">
+      <main className="relative z-10 w-full flex flex-col items-center">
         <Hero />
         <WhyWorkWithMe />
         <About />

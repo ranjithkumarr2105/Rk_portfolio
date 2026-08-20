@@ -7,7 +7,9 @@ const Contact = () => {
   const { email, github, linkedin, location, availability } = portfolioData.personal;
 
   return (
-    <section id="contact" className="py-32 w-full relative z-10 overflow-hidden">
+    <section id="contact" className="py-32 w-full relative z-10 overflow-hidden bg-background/80">
+      {/* Distinct Section Aurora */}
+      <div className="absolute inset-0 aurora-contact opacity-40 mix-blend-screen pointer-events-none" />
       
       {/* Massive subtle background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-black text-white/[0.02] whitespace-nowrap pointer-events-none select-none">

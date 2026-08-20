@@ -6,7 +6,9 @@ const About = () => {
   const { narrative, stats } = portfolioData.about;
 
   return (
-    <section id="about" className="py-32 w-full relative z-10 bg-black/40 border-y border-white/5">
+    <section id="about" className="py-32 w-full relative z-10 bg-background/50 border-y border-white/5 overflow-hidden">
+      {/* Distinct Section Aurora */}
+      <div className="absolute inset-0 aurora-about opacity-30 mix-blend-screen pointer-events-none" />
       
       {/* Decorative gradient blob */}
       <div className="absolute left-[-10%] top-1/2 -translate-y-1/2 w-96 h-96 bg-accent1/10 rounded-full blur-[100px] pointer-events-none" />
