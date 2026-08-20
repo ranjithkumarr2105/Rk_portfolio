@@ -26,20 +26,21 @@ const HowIBuildSoftware = () => {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="workflow" className="py-24 w-full relative z-10 overflow-hidden bg-white/50" ref={containerRef}>
-      {/* Distinct Section Aurora */}
-      <div className="absolute inset-0 aurora-workflow opacity-100 pointer-events-none" />
+    <section id="workflow" className="py-[120px] w-full relative z-10 overflow-hidden" ref={containerRef}>
       
-      <div className="container mx-auto px-6 max-w-5xl relative z-10">
+      {/* Section Identity Lights */}
+      <div className="section-light light-workflow" />
+      
+      <div className="container mx-auto px-6 max-w-5xl relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-20"
         >
-          <h2 className="text-sm font-bold tracking-widest uppercase text-accent1 mb-6">Engineering Workflow</h2>
-          <h3 className="text-5xl md:text-6xl lg:text-[72px] font-black leading-tight text-gray-900">
+          <h2 className="text-sm font-bold tracking-widest uppercase text-emerald mb-6">Engineering Workflow</h2>
+          <h3 className="heading-section">
             How I Build <span className="text-gradient">Software.</span>
           </h3>
         </motion.div>
@@ -51,7 +52,7 @@ const HowIBuildSoftware = () => {
           {/* Animated fill line */}
           <motion.div 
             style={{ height: lineHeight }}
-            className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 w-[2px] bg-gradient-to-b from-primary via-accent1 to-accent3 origin-top"
+            className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 w-[2px] bg-gradient-to-b from-primary via-emerald to-cyan origin-top"
           />
 
           <div className="flex flex-col gap-20 relative z-10">
@@ -64,10 +65,10 @@ const HowIBuildSoftware = () => {
                   <div className="hidden md:block w-1/2" />
 
                   {/* Icon Node */}
-                  <div className="absolute left-[30px] md:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-white border-4 border-gray-100 flex items-center justify-center text-gray-400 z-20 shadow-md">
+                  <div className="absolute left-[30px] md:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-white border-4 border-gray-100 flex items-center justify-center text-gray-400 z-20 shadow-sm">
                     <motion.div 
                       initial={{ scale: 0 }}
-                      whileInView={{ scale: 1, backgroundColor: "#3B82F6", color: "#FFF" }}
+                      whileInView={{ scale: 1, backgroundColor: "#10B981", color: "#FFF" }}
                       viewport={{ once: true, margin: "-20%" }}
                       transition={{ type: "spring", stiffness: 200, damping: 10, delay: 0.1 }}
                       className="w-full h-full rounded-full flex items-center justify-center bg-gray-100 text-gray-500 shadow-inner"
@@ -84,9 +85,9 @@ const HowIBuildSoftware = () => {
                     transition={{ duration: 0.6, type: "spring" }}
                     className={`w-full md:w-1/2 pl-24 md:pl-0 ${isEven ? 'md:pl-20' : 'md:pr-20 text-left md:text-right'}`}
                   >
-                    <div className="glass-card p-10 hover-glow">
-                      <h4 className="text-2xl font-bold text-gray-900 mb-4">{item.step}</h4>
-                      <p className="text-gray-600 leading-relaxed font-light">
+                    <div className="premium-glass-card p-10">
+                      <h4 className="heading-card mb-4">{item.step}</h4>
+                      <p className="text-gray-600 text-lg leading-relaxed font-light">
                         {item.desc}
                       </p>
                     </div>
