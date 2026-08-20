@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
-import { useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import { portfolioData } from '../../data/portfolioData';
 import { Search, PenTool, Code2, TestTube, Rocket, Wrench } from 'lucide-react';
 import { FaFigma } from 'react-icons/fa';
@@ -17,20 +17,14 @@ const icons = [
 const HowIBuildSoftware = () => {
   const { workflow } = portfolioData;
   
-  // Continuous Loop Animation for the Timeline
-  const progress = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
   
-  useEffect(() => {
-    const controls = animate(progress, 100, {
-      duration: 12,
-      ease: "linear",
-      repeat: Infinity,
-      repeatType: "loop"
-    });
-    return controls.stop;
-  }, [progress]);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
 
-  const lineHeight = useTransform(progress, [0, 100], ["0%", "100%"]);
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section id="workflow" className="py-[120px] w-full relative z-10 overflow-hidden">
@@ -52,46 +46,47 @@ const HowIBuildSoftware = () => {
           </h3>
         </motion.div>
 
-        <div className="relative">
+        <div className="relative" ref={containerRef}>
           {/* Static background line (light gray) */}
-          <div className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[4px] bg-slate-200 rounded-full" />
+          <div className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[4px] bg-[#D1D5DB] rounded-full" />
           
           {/* Animated fill line (gradient blue/cyan) */}
           <motion.div 
             style={{ height: lineHeight }}
-            className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 w-[4px] bg-gradient-to-b from-[#5B8CFF] to-[#21D4FD] origin-top rounded-full shadow-[0_0_15px_rgba(33,212,253,0.6)] z-10"
+            className="absolute left-[30px] md:left-1/2 md:-translate-x-1/2 top-0 w-[4px] bg-gradient-to-b from-[#4F7CFF] via-[#7B61FF] to-[#12D8FA] origin-top rounded-full shadow-[0_0_15px_rgba(33,212,253,0.6)] z-10 transition-all duration-300 ease-[cubic-bezier(0.22,0.61,0.36,1)]"
           />
 
           <div className="flex flex-col gap-24 relative z-20">
             {workflow.map((item, idx) => {
               const isEven = idx % 2 === 0;
               // Calculate at what percentage this icon should activate
-              // 7 items -> index 0 activates at ~0%, index 6 activates at 100%
-              const activationPoint = (idx / (workflow.length - 1)) * 100;
+              const activationPoint = idx / (workflow.length - 1);
+              const start = activationPoint - 0.05;
+              const end = activationPoint;
               
-              // Icon scale transforms based on progress passing the activation point
-              const scale = useTransform(progress, 
-                [activationPoint - 1, activationPoint, activationPoint + 5], 
+              // Icon scale transforms based on scroll progress passing the activation point
+              const scale = useTransform(scrollYProgress, 
+                [start, end, end + 0.05], 
                 [1, 1.2, 1.1]
               );
               
-              const bgColor = useTransform(progress, 
-                [activationPoint - 1, activationPoint], 
-                ["#F8FAFC", "#21D4FD"]
+              const bgColor = useTransform(scrollYProgress, 
+                [start, end], 
+                ["#FFFFFF", "#21D4FD"]
               );
               
-              const iconColor = useTransform(progress, 
-                [activationPoint - 1, activationPoint], 
+              const iconColor = useTransform(scrollYProgress, 
+                [start, end], 
                 ["#94A3B8", "#FFFFFF"]
               );
               
-              const borderColor = useTransform(progress, 
-                [activationPoint - 1, activationPoint], 
-                ["#E2E8F0", "#5B8CFF"]
+              const borderColor = useTransform(scrollYProgress, 
+                [start, end], 
+                ["#D1D5DB", "#5B8CFF"]
               );
               
-              const boxShadow = useTransform(progress, 
-                [activationPoint - 1, activationPoint], 
+              const boxShadow = useTransform(scrollYProgress, 
+                [start, end], 
                 ["none", "0 0 20px rgba(33, 212, 253, 0.5)"]
               );
 
