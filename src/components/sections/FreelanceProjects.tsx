@@ -13,13 +13,13 @@ const FreelanceProjects = () => {
   ];
 
   return (
-    <section id="freelance" className="py-[140px] w-full relative z-10 overflow-hidden bg-white/30 border-t border-gray-200">
+    <section id="freelance" className="py-24 w-full relative z-10 overflow-hidden bg-white/30 border-t border-gray-200">
       {/* Distinct Section Aurora */}
       <div className="absolute inset-0 aurora-freelance opacity-100 pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         
-        <div className="text-center mb-[140px]">
+        <div className="text-center mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ const FreelanceProjects = () => {
           </motion.p>
         </div>
 
-        <div className="flex flex-col gap-[140px]">
+        <div className="flex flex-col gap-32">
           {freelanceProjects.map((project, idx) => {
             const isEven = idx % 2 === 0;
 

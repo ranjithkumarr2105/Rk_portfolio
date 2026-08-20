@@ -18,7 +18,11 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen bg-background text-white selection:bg-primary/30 relative">
+    <div className="min-h-screen bg-transparent text-gray-900 selection:bg-primary/30 relative">
+      
+      {/* Premium Global Mesh Background */}
+      <div className="mesh-global" />
+
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent3 origin-left z-[100]"

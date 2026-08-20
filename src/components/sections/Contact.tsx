@@ -7,7 +7,7 @@ const Contact = () => {
   const { email, github, linkedin, location, availability } = portfolioData.personal;
 
   return (
-    <section id="contact" className="py-[140px] w-full relative z-10 overflow-hidden bg-white/50">
+    <section id="contact" className="py-24 w-full relative z-10 overflow-hidden bg-white/50">
       {/* Distinct Section Aurora */}
       <div className="absolute inset-0 aurora-contact opacity-100 pointer-events-none" />
       
@@ -22,7 +22,7 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-32"
+          className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-7xl lg:text-[80px] font-black mb-10 leading-tight text-gray-900">
             Let's Build Something <br className="hidden md:block" />
@@ -92,7 +92,7 @@ const Contact = () => {
 
         </div>
         
-        <div className="mt-20 text-center flex items-center justify-center gap-3 text-gray-600 font-medium text-lg">
+        <div className="mt-16 text-center flex items-center justify-center gap-3 text-gray-600 font-medium text-lg">
           <MapPin size={20} /> Based in {location}
         </div>
       </div>

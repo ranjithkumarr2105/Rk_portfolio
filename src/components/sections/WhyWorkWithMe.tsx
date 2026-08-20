@@ -15,12 +15,12 @@ const WhyWorkWithMe = () => {
   const { whyWorkWithMe } = portfolioData;
 
   return (
-    <section id="why-me" className="py-[140px] w-full relative z-10 overflow-hidden">
+    <section id="why-me" className="py-24 w-full relative z-10 overflow-hidden">
       {/* Distinct Section Aurora */}
       <div className="absolute inset-0 aurora-why-me opacity-100 pointer-events-none" />
       
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="flex flex-col md:flex-row gap-16 items-end mb-24">
+        <div className="flex flex-col md:flex-row gap-12 items-end mb-16">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}

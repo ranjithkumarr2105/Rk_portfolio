@@ -15,33 +15,34 @@ const FeaturedProject = () => {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    // 5 screenshots -> 5 stops
     const index = Math.min(Math.floor(latest * project.screenshots.length), project.screenshots.length - 1);
     setActiveIndex(index);
   });
 
   return (
-    <section id="featured" className="w-full relative z-10 bg-white overflow-hidden border-y border-gray-200 pt-[140px]">
+    <section id="featured" className="w-full relative z-10 bg-white border-y border-gray-100 pt-24 pb-24 overflow-visible">
       
-      {/* Distinct Section Aurora (Light Theme) */}
+      {/* Distinct Section Aurora (Orange+Violet) */}
       <div className="absolute inset-0 aurora-featured opacity-100 pointer-events-none" />
 
-      {/* Intro text */}
-      <div className="container mx-auto px-6 max-w-7xl relative z-20 mb-[140px]">
-        <div className="flex flex-col items-center text-center">
+      {/* Intro Header */}
+      <div className="container mx-auto px-6 max-w-7xl relative z-20 mb-16">
+        <div className="flex flex-col items-start md:items-center md:text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="px-5 py-2 rounded-full bg-accent2/10 border border-accent2/20 text-xs font-bold tracking-widest uppercase text-accent2 mb-8 shadow-sm"
+            className="px-4 py-1.5 rounded-full bg-accent2/10 border border-accent2/20 text-xs font-bold tracking-widest uppercase text-accent2 mb-6 shadow-sm"
           >
             Featured Product
           </motion.div>
           
           <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl md:text-7xl lg:text-[80px] font-black mb-8 text-gray-900 leading-tight"
+            viewport={{ once: true, margin: "-50px" }}
+            className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-gray-900 leading-tight"
           >
             {project.title}
           </motion.h2>
@@ -50,21 +51,22 @@ const FeaturedProject = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-xl md:text-2xl text-gray-600 font-light max-w-[700px] mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-gray-600 font-light max-w-[600px] leading-relaxed"
           >
             {project.subtitle}
           </motion.p>
         </div>
       </div>
 
-      {/* SCROLLING SHOWCASE */}
-      <div ref={containerRef} className="h-[400vh] relative">
-        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-          
-          <div className="container mx-auto px-6 max-w-7xl flex flex-col lg:flex-row items-center gap-12 lg:gap-24 h-full py-20">
+      {/* SCROLLING SHOWCASE: Sticky Phone + Scrolling Text */}
+      <div ref={containerRef} className="h-[400vh] relative w-full mb-24">
+        
+        {/* Sticky Container */}
+        <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+          <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center gap-12 h-full py-16">
             
-            {/* Left Side: Storytelling Text */}
-            <div className="w-full lg:w-1/2 flex flex-col justify-center h-full relative z-20">
+            {/* Left Column: Feature Text */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center h-[50vh] md:h-[60vh] relative z-20">
               {project.screenshots.map((shot: any, idx: number) => {
                 const isActive = activeIndex === idx;
                 return (
@@ -73,18 +75,20 @@ const FeaturedProject = () => {
                     initial={false}
                     animate={{ 
                       opacity: isActive ? 1 : 0, 
-                      y: isActive ? 0 : 50,
-                      scale: isActive ? 1 : 0.95,
-                      filter: isActive ? "blur(0px)" : "blur(8px)",
+                      y: isActive ? 0 : (idx > activeIndex ? 30 : -30),
+                      filter: isActive ? "blur(0px)" : "blur(4px)",
                       pointerEvents: isActive ? "auto" : "none"
                     }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0 flex flex-col justify-center max-w-[500px]"
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="absolute inset-0 flex flex-col justify-center max-w-[450px]"
                   >
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gray-900 leading-tight">
+                    <div className="w-12 h-12 bg-gray-50 rounded-2xl border border-gray-200 flex items-center justify-center text-gray-900 font-bold mb-6 shadow-sm">
+                      0{idx + 1}
+                    </div>
+                    <h3 className="text-3xl md:text-5xl font-black mb-6 text-gray-900 leading-tight">
                       {shot.title}
                     </h3>
-                    <p className="text-xl text-gray-600 leading-relaxed font-light">
+                    <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-light">
                       {shot.desc}
                     </p>
                   </motion.div>
@@ -92,15 +96,12 @@ const FeaturedProject = () => {
               })}
             </div>
 
-            {/* Right Side: CSS Device Mockup */}
-            <div className="w-full lg:w-1/2 flex justify-center items-center h-full relative z-20">
-              
+            {/* Right Column: Sticky iPhone Mockup */}
+            <div className="w-full md:w-1/2 flex justify-center items-center h-full relative z-20">
               <motion.div 
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="device-mockup w-[280px] h-[580px] md:w-[340px] md:h-[700px] relative"
+                className="device-mockup w-[260px] h-[533px] md:w-[320px] md:h-[656px] relative shadow-2xl flex-shrink-0"
               >
-                <div className="device-notch" />
+                <div className="dynamic-island" />
                 <div className="device-glass" />
                 
                 {/* Images inside the mockup with object-fit: contain to prevent cropping */}
@@ -116,8 +117,8 @@ const FeaturedProject = () => {
                         opacity: isActive ? 1 : 0,
                         scale: isActive ? 1 : 1.05,
                       }}
-                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute inset-0 w-full h-full object-contain bg-white rounded-[32px] p-2"
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      className="absolute inset-0 w-full h-full object-contain bg-white rounded-[36px]"
                       onError={(e) => {
                         console.error(`Failed to load image: ${shot.image}`);
                         e.currentTarget.style.display = 'none';
@@ -126,69 +127,69 @@ const FeaturedProject = () => {
                   );
                 })}
               </motion.div>
-
             </div>
+
           </div>
         </div>
       </div>
 
-      {/* Details Area below the scroll section */}
-      <div className="container mx-auto px-6 max-w-7xl relative z-20 pb-[140px] pt-[140px]">
-        <div className="grid lg:grid-cols-2 gap-16 mb-[140px]">
-          <div className="glass-card p-12 flex flex-col gap-6">
+      {/* Details Area */}
+      <div className="container mx-auto px-6 max-w-7xl relative z-20">
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div className="glass-card p-10 flex flex-col gap-4">
             <h3 className="text-sm font-bold tracking-widest uppercase text-accent2">The Problem</h3>
             <p className="text-gray-700 text-lg leading-relaxed font-light">{project.problem}</p>
           </div>
-          <div className="glass-card p-12 flex flex-col gap-6">
+          <div className="glass-card p-10 flex flex-col gap-4">
             <h3 className="text-sm font-bold tracking-widest uppercase text-accent1">The Solution</h3>
             <p className="text-gray-700 text-lg leading-relaxed font-light">{project.solution}</p>
           </div>
         </div>
 
         {/* Architecture & Tech */}
-        <div className="glass-card p-12 lg:p-20 relative overflow-hidden">
-          <div className="absolute right-0 bottom-0 w-96 h-96 bg-gradient-to-tl from-accent2/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="glass-card p-10 lg:p-14 relative overflow-hidden">
+          <div className="absolute right-0 bottom-0 w-64 h-64 bg-gradient-to-tl from-accent2/10 to-transparent rounded-full blur-3xl pointer-events-none" />
           
-          <div className="grid md:grid-cols-2 gap-16 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 relative z-10">
             <div>
-              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-900">
-                <Layers className="text-primary" /> Architecture
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-3 text-gray-900">
+                <Layers className="text-primary" size={20} /> Architecture
               </h3>
               <p className="text-gray-600 leading-relaxed mb-10 font-light">{project.architecture}</p>
               
-              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-900">
-                <Database className="text-secondary" /> Impact & Challenges
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-3 text-gray-900">
+                <Database className="text-secondary" size={20} /> Impact & Challenges
               </h3>
-              <p className="text-gray-800 font-semibold mb-4 text-lg">{project.impact}</p>
+              <p className="text-gray-800 font-semibold mb-3 text-lg">{project.impact}</p>
               <p className="text-gray-600 text-sm leading-relaxed font-light">{project.challenges}</p>
 
               <a
                 href={project.github}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-12 px-8 py-4 rounded-full bg-gray-900 text-white font-bold flex items-center justify-center gap-3 hover:-translate-y-1 transition-all shadow-xl hover:shadow-2xl w-max"
+                className="mt-10 px-8 py-3.5 rounded-2xl bg-gray-900 text-white font-bold flex items-center justify-center gap-3 hover:-translate-y-1 transition-all shadow-lg hover:shadow-xl w-max"
               >
-                <FaGithub size={20} /> View Source Code
+                <FaGithub size={18} /> View Source Code
               </a>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-8 text-gray-900 border-b border-gray-200 pb-4">Key Features</h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+              <h3 className="text-lg font-bold mb-6 text-gray-900 border-b border-gray-100 pb-3">Key Features</h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                 {project.features.map((feature: string, idx: number) => (
                   <li key={idx} className="flex items-center gap-3 text-sm text-gray-700 font-medium">
-                    <div className="w-8 h-8 rounded-full bg-accent3/10 flex items-center justify-center">
-                      <Smartphone size={16} className="text-accent3" />
+                    <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center">
+                      <Smartphone size={14} className="text-gray-500" />
                     </div>
                     {feature}
                   </li>
                 ))}
               </ul>
 
-              <h3 className="text-xl font-bold mb-8 text-gray-900 border-b border-gray-200 pb-4">Tech Stack</h3>
-              <div className="flex flex-wrap gap-3">
+              <h3 className="text-lg font-bold mb-6 text-gray-900 border-b border-gray-100 pb-3">Tech Stack</h3>
+              <div className="flex flex-wrap gap-2">
                 {project.techStack.map((tech: string, idx: number) => (
-                  <span key={idx} className="px-5 py-2 text-sm font-semibold text-gray-700 bg-gray-100 border border-gray-200 rounded-full shadow-sm">
+                  <span key={idx} className="px-4 py-1.5 text-xs font-semibold text-gray-700 bg-white border border-gray-200 rounded-lg shadow-sm">
                     {tech}
                   </span>
                 ))}
