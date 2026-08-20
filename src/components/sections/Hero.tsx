@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../../data/portfolioData';
 
 const Hero = () => {
-  const { name, roles, skills, tagline } = portfolioData.personal;
+  const { roles, skills, tagline } = portfolioData.personal;
   const [currentRole, setCurrentRole] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
-    }, 4000);
+    }, 3500); // 3.5 second interval
     return () => clearInterval(interval);
   }, [roles.length]);
 
@@ -32,24 +32,24 @@ const Hero = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6"
           >
-            <h1 className="text-hero-name flex flex-col">
+            <h1 className="text-[72px] md:text-[88px] lg:text-[100px] font-[900] leading-[1.05] tracking-tighter text-slate-900 flex flex-col">
               <span className="block">Hi, I'm</span>
-              <span className="block">{name.split(' ')[0]}</span>
+              <span className="block">Ranjithkumar</span>
             </h1>
           </motion.div>
 
-          {/* Fixed Height Rotating Role Area - ZERO Overlap Guarantee */}
-          <div className="h-[60px] md:h-[80px] lg:h-[90px] relative overflow-hidden mb-8 w-full max-w-[650px]">
+          {/* Fixed Height Rotating Role Area */}
+          <div className="h-[1.2em] text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] tracking-tight relative overflow-hidden mb-10 w-full max-w-[700px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentRole}
-                initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
+                initial={{ opacity: 0, y: "100%", filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -40, filter: "blur(12px)" }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 flex items-center"
+                exit={{ opacity: 0, y: "-100%", filter: "blur(8px)" }}
+                transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+                className="absolute inset-0 flex items-start"
               >
-                <h2 className="text-hero-role text-gradient-premium">
+                <h2 className="text-gradient-premium m-0 p-0">
                   {roles[currentRole]}
                 </h2>
               </motion.div>
@@ -60,7 +60,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-slate-600 text-[18px] md:text-[20px] max-w-[600px] mb-12 leading-[1.6] font-medium"
+            className="text-slate-600 text-[18px] md:text-[20px] max-w-[600px] mb-12 leading-[1.8] font-medium"
           >
             {tagline}
           </motion.p>

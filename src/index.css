@@ -39,16 +39,16 @@
 @layer utilities {
   /* Ultra-Premium Animated Gradient Text */
   .text-gradient-premium {
-    background: linear-gradient(90deg, #4F8CFF, #7B61FF, #9F6BFF, #22D3EE, #4F8CFF);
-    background-size: 300% 100%;
+    background: linear-gradient(90deg, #5B8CFF, #7B61FF, #C84BFF, #14D8FF, #5B8CFF);
+    background-size: 400% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradient-shift 6s ease-in-out infinite;
+    animation: gradient-shift 12s ease-in-out infinite;
   }
   
   /* Highlight Gradients for Specific Words */
   .text-gradient-accent {
-    background: linear-gradient(90deg, #5B7FFF, #7C5CFF);
+    background: linear-gradient(90deg, #5B8CFF, #7B61FF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -101,15 +101,15 @@
 
   /* Premium Glass Cards with Hover Glow */
   .premium-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 28px;
     box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.04),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      0 15px 35px rgba(0, 0, 0, 0.03),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
     position: relative;
     overflow: hidden;
   }
