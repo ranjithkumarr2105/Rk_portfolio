@@ -1,3 +1,8 @@
+import smartAgHero from '../assets/generated/smart_ag_hero.png';
+import healthTrackerHero from '../assets/generated/health_tracker_hero.png';
+import foodDeliveryHero from '../assets/generated/food_delivery_hero.png';
+import cropDiseaseHero from '../assets/generated/crop_disease_hero.png';
+
 export const portfolioData = {
   personal: {
     name: "Ranjithkumar R",
@@ -109,7 +114,7 @@ When I approach a problem, I don't just look for a quick fix. I analyze the busi
       techStack: ["Kotlin", "Jetpack Compose", "Flask", "Firebase", "React", "Gemini AI"],
       features: ["Live Tracking", "AI Crop Doctor", "Wallet Integration", "OTP Verification", "Donation Management"],
       impact: "Created a seamless end-to-end flow for real-time order management, secure payments, and waste reduction.",
-      image: "/src/assets/generated/smart_ag_hero.png"
+      image: smartAgHero
     },
     {
       title: "Health & Wellness Tracker",
@@ -120,7 +125,7 @@ When I approach a problem, I don't just look for a quick fix. I analyze the busi
       techStack: ["Android", "Java", "Firebase", "Material Design"],
       features: ["Real-time Computation", "Calorie Tracking", "Custom User Profiles", "Progress Analytics"],
       impact: "Delivered a frictionless daily tracking experience for active users.",
-      image: "/src/assets/generated/health_tracker_hero.png"
+      image: healthTrackerHero
     },
     {
       title: "Commission-Free Food Delivery",
@@ -131,7 +136,7 @@ When I approach a problem, I don't just look for a quick fix. I analyze the busi
       techStack: ["Flask", "MySQL", "Python", "REST APIs"],
       features: ["Normalized Schema", "Order Management", "Restaurant Dashboards", "Delivery Routing"],
       impact: "Provided a scalable backend foundation capable of handling concurrent orders without aggregator fees.",
-      image: "/src/assets/generated/food_delivery_hero.png"
+      image: foodDeliveryHero
     },
     {
       title: "Offline Crop Disease Detection",
@@ -142,7 +147,7 @@ When I approach a problem, I don't just look for a quick fix. I analyze the busi
       techStack: ["Android", "Kotlin", "TensorFlow Lite", "Edge AI"],
       features: ["Offline Diagnosis", "Edge Inference", "Real-time Camera Feed", "Disease Treatment DB"],
       impact: "Empowered remote farmers with instant, zero-latency crop diagnostics regardless of connectivity.",
-      image: "/src/assets/generated/crop_disease_hero.png"
+      image: cropDiseaseHero
     }
   ]
 };
