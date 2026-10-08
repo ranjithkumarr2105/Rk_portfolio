@@ -37,7 +37,7 @@ When I approach a problem, I don't just look for a quick fix. I analyze the busi
     stats: {
       projects: "5+ Projects",
       experience: "Android + Web",
-      education: "B.E. CSE (CGPA: 8.11)"
+      education: "B.E. CSE (CGPA: 8.13)"
     }
   },
 
